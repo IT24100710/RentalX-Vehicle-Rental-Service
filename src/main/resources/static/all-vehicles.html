@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Vehicles</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #005b96;
+        }
+
+        .vehicle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .vehicle-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .vehicle-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .vehicle-info {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .vehicle-info strong {
+            color: #333;
+        }
+
+        .refresh-btn {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .refresh-btn:hover {
+            background: #005f99;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Available Vehicles</h1>
+<button class="refresh-btn" onclick="fetchAllVehicles()">Refresh Vehicles</button>
+
+<div class="vehicle-grid" id="vehicleGrid"></div>
+
+<script>
+    function fetchAllVehicles() {
+        fetch('/vehicles/all?sortByPrice=true')
+            .then(response => response.json())
+            .then(data => {
+                const grid = document.getElementById('vehicleGrid');
+                grid.innerHTML = '';
+
+                data.forEach(vehicle => {
+                    const card = document.createElement('div');
+                    card.className = 'vehicle-card';
+                    card.innerHTML = `
+                            <img src="${vehicle.imagePath}" alt="${vehicle.model}">
+                            <div class="vehicle-info">
+                                <strong>Model:</strong> ${vehicle.model}<br>
+                                <strong>Type:</strong> ${vehicle.type}<br>
+                                <strong>Rent:</strong> Rs.${vehicle.rentPrice}<br>
+                                <strong>Status:</strong> ${vehicle.available ? 'Available' : 'Unavailable'}
+                            </div>
+                        `;
+                    grid.appendChild(card);
+                });
+            })
+            .catch(err => {
+                alert("Failed to fetch vehicles.");
+                console.error(err);
+            });
+    }
+
+    window.onload = fetchAllVehicles;
+</script>
+</body>
+</html>
