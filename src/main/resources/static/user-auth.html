@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f5;
+            padding: 30px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #003366;
+        }
+
+        section {
+            background: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #004b8d;
+            color: white;
+            border: none;
+        }
+
+        button:hover {
+            background: #003060;
+        }
+
+        #profileSection {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>User Portal</h1>
+
+<!-- Registration -->
+<section>
+    <h2>Register</h2>
+    <form id="registerForm">
+        <input type="text" id="regId" placeholder="User ID" required>
+        <input type="text" id="regName" placeholder="Name" required>
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="text" id="regPhone" placeholder="Phone" required>
+        <input type="password" id="regPassword" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+</section>
+
+<!--&lt;!&ndash; Login &ndash;&gt;-->
+<!--<section>-->
+<!--    <h2>Login</h2>-->
+<!--    <form id="loginForm">-->
+<!--        <input type="text" id="loginId" placeholder="User ID" required>-->
+<!--        <input type="password" id="loginPassword" placeholder="Password" required>-->
+<!--        <button type="submit">Login</button>-->
+<!--    </form>-->
+<!--</section>-->
+
+<!-- Profile Management -->
+<section id="profileSection">
+    <h2>Your Profile</h2>
+    <input type="text" id="profileName" placeholder="Name">
+    <input type="email" id="profileEmail" placeholder="Email">
+    <input type="text" id="profilePhone" placeholder="Phone">
+    <button onclick="updateProfile()">Update Profile</button>
+    <button onclick="deleteProfile()" style="background-color: red;">Delete Account</button>
+</section>
+
+<script src="scripts/user-auth.js"></script>
+</body>
+</html>
