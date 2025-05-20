@@ -1,0 +1,5 @@
+A001,John Doe,john@example.com,pass123
+A002,Jane Smith,jane@example.com,password
+A003,Michael Brown,michael@rentalx.com,admin123
+4,kavindu perera ,kavindu@gmail.com,Kavindu
+admin,admin,admin@mail.com,admin
